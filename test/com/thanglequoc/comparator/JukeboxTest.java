@@ -29,7 +29,19 @@ public class JukeboxTest {
 	String[] expectedSongOrder = {"Get Lucky", "In The End", "Keep On Walking", "Mercy", "Running Away"};
 	
 	jukebox.sortSongByTitleAscending();
-	String[] actualSongOrder =  (String[]) jukebox.getPlaylists().stream()
+	String[] actualSongOrder =  jukebox.getPlaylists().stream()
+		.map(song -> song.getTitle())
+		.collect(Collectors.toList()).toArray(new String[0]);
+	
+	assertArrayEquals(expectedSongOrder, actualSongOrder);
+    }
+    
+    @Test
+    public void should_SortPlaylistByTitleDescending_When_RunSortByTitleDescending() {
+	String[] expectedSongOrder = {"Running Away", "Mercy", "Keep On Walking", "In The End", "Get Lucky"};
+	
+	jukebox.sortSongByTitleDescending();
+	String[] actualSongOrder = jukebox.getPlaylists().stream()
 		.map(song -> song.getTitle())
 		.collect(Collectors.toList()).toArray(new String[0]);
 	

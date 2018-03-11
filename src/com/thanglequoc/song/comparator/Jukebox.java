@@ -32,6 +32,11 @@ public class Jukebox {
 	playlists.sort(titleComparator);
     }
     
+    public void sortSongByTitleDescending() {
+	TitleComparator titleComparator = new TitleComparator();
+	playlists.sort(titleComparator.reversed());
+    }
+    
     public void showPlaylist() {
 	for(Song song: playlists) {
 	    System.out.println("--------------------------");
