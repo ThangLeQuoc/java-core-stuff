@@ -2,13 +2,18 @@ package com.thanglequoc.song.comparator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Jukebox {
     
     private List<Song> playlists;
     
+    private TreeSet<Song> treePlaylist;
+    
     public Jukebox() {
 	fetchSong();
+	treePlaylist = new TreeSet<Song>(new TitleComparator());
+	treePlaylist.addAll(playlists);
     }
     
     
@@ -27,11 +32,57 @@ public class Jukebox {
 	playlists.add(song5);
     }
     
+    public void sortSongByTitleAscending() {
+	TitleComparator titleComparator = new TitleComparator();
+	playlists.sort(titleComparator);
+    }
+    
+    public void sortSongByTitleDescending() {
+	TitleComparator titleComparator = new TitleComparator();
+	playlists.sort(titleComparator.reversed());
+    }
+    
+    public void sortSongByArtistAscending() {
+	ArtistComparator artistComparator = new ArtistComparator();
+	playlists.sort(artistComparator);
+    }
+    
+    public void sortSongByArtistDescending() {
+	ArtistComparator artistComparator = new ArtistComparator();
+	playlists.sort(artistComparator.reversed());
+    }
+    
+    public void sortSongByPriceAscending() {
+	PriceComparator priceComparator = new PriceComparator();
+	playlists.sort(priceComparator);
+    }
+    
+    public void sortSongByPriceDescending() {
+	PriceComparator priceComparator = new PriceComparator();
+	playlists.sort(priceComparator.reversed());
+    }
+    
     public void showPlaylist() {
 	for(Song song: playlists) {
 	    System.out.println("--------------------------");
 	    System.out.println(song.getTitle() + " -- " + song.getArtist());	    
 	}
+    }
+
+    public List<Song> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Song> playlists) {
+        this.playlists = playlists;
+    }
+    
+    public void setTreePlaylist(TreeSet<Song> treePlaylist) {
+	this.treePlaylist = treePlaylist;
+    }
+    
+    public TreeSet<Song> getTreePlaylist() {
+	return treePlaylist;
     }
     
 }

@@ -1,6 +1,6 @@
 package com.thanglequoc.song.comparator;
 
-public class Song {
+public class Song implements Comparable<Song> {
     private String title;
     private String album;
     private String artist;
@@ -45,5 +45,10 @@ public class Song {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int compareTo(Song o) {
+	return title.compareTo(o.title);
     }
 }
