@@ -27,11 +27,24 @@ public class Jukebox {
 	playlists.add(song5);
     }
     
+    public void sortSongByTitleAscending() {
+	TitleComparator titleComparator = new TitleComparator();
+	playlists.sort(titleComparator);
+    }
+    
     public void showPlaylist() {
 	for(Song song: playlists) {
 	    System.out.println("--------------------------");
 	    System.out.println(song.getTitle() + " -- " + song.getArtist());	    
 	}
+    }
+
+    public List<Song> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Song> playlists) {
+        this.playlists = playlists;
     }
     
 }
